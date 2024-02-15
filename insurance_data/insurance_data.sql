@@ -16,18 +16,20 @@ select count(*) as count_f_null_values from data_car where null ;
 -- removing column : X_OBSTAT_
 alter table data_car drop column X_OBSTAT_;
 
+
 -- creatinh new colums: 
 alter table data_car add column severity float ;
 alter table data_car add column frequency float ;
 
+
 -- updateing the new columns with the data
 
 update data_car set severity= CASE WHEN (numclaims >0 ) THEN claimcst0/numclaims  ELSE 0 end;
-update data_car set frequency= numclaims/31800.81861719781;  -- 31800.81861719781 is the sum(exposure)
+update data_car set frequency= numclaims/exposure;
 
 -- numeric features stats:
 select  min(veh_value),max(veh_value),avg(veh_value) from data_car ;
-select  min(numclaims),max(numclaims) from data_car;
+select  min(numclaims),max(numclaims),sum(numclaims) from data_car;
 select  min(claimcst0),max(claimcst0),avg(claimcst0) from data_car ;
 select  min(severity),max(severity),avg(severity) from data_car ;
 
@@ -49,23 +51,26 @@ select agecat,count(*) as number_of_claims_by_agecat from data_car where clm=1 g
 
 
 -- Average/sum severity & frequency 
-select numclaims, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select numclaims, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by numclaims  ;
  
-select veh_body, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select veh_body, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by veh_body  ;
  
-select veh_age, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select veh_age, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by veh_age  ;
  
-select gender, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select gender, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by gender  ;
  
-select area, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select area, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by area  ;
  
-select agecat, round(avg(severity)) , round(sum(severity)), round(avg(frequency),2),round(sum(frequency),2)
+select agecat, round(avg(severity)) , round(avg(frequency),2)
 from data_car group by agecat  ;
+
+select sum(claimcst0),sum(numclaims),sum(exposure),round(avg(severity)) , round(avg(frequency),2)
+ from data_car   ;
  
 
 
