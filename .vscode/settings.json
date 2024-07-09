@@ -9,7 +9,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "FirstMySqlConnection",
+            "name": "Home_Prices_Analyis",
             "database": "house_pricing",
             "username": "root",
             "password": "1691983Omar@_sql"

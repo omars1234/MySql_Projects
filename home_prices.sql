@@ -9,6 +9,8 @@ select * from raw_sales;
 select count(*) as number_of_rows from raw_sales;  ## We have 29580 recored
 select count(*) as number_of_columns from information_schema.columns where table_name ='raw_sales'; ## We have 29580 recored 4 columns(features)
 
+
+
 ## Data Info
 desc raw_sales;
 
