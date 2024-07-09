@@ -6,17 +6,19 @@ show tables;
 select * from raw_sales;
 
 ## df.shape
-select count(*) as number_of_rows from raw_sales;  ## We have 29580 recored
-select count(*) as number_of_columns from information_schema.columns where table_name ='raw_sales'; ## We have 29580 recored 4 columns(features)
-
-
+/* How many rows the data set has? */
+select count(*) as number_of_rows from raw_sales; 
+/* How many columns the data set has? */
+select count(*) as number_of_columns from information_schema.columns where table_name ='raw_sales';
 
 ## Data Info
+/* what are the schemas names and data types? */
 desc raw_sales;
 
 ## Data Cleaning :
 
 ### Na-Values :
+/* Any Null Values? */
 select count(*) as number_of_null_values from raw_sales where propertyType is null ;
 
 ### create new col with the date(datesold) 
