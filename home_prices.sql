@@ -5,29 +5,39 @@ use house_pricing;
 show tables;
 select * from raw_sales;
 
+#######################################################################################################
+
 ## df.shape
 /* How many rows the data set has? */
 select count(*) as number_of_rows from raw_sales; 
 /* How many columns the data set has? */
 select count(*) as number_of_columns from information_schema.columns where table_name ='raw_sales';
 
+#######################################################################################################
+
 ## Data Info
 /* what are the schemas names and data types? */
 desc raw_sales;
 
-## Data Cleaning :
+#######################################################################################################
 
-### Na-Values :
+## Na-Values :
 /* Any Null Values? */
 select count(*) as number_of_null_values from raw_sales where propertyType is null ;
 
-### create new col with the date(datesold) 
+-- #######################################################################################################
+
+## create new col with the date(datesold) 
 alter table raw_sales add column date date ;
 update raw_sales set date= date(datesold);
 
-### dropping datesold col along with  postcode col
+-- #######################################################################################################
+
+## dropping datesold col along with  postcode col
 alter table raw_sales drop column datesold;
 alter table raw_sales drop column postcode;
+
+-- #######################################################################################################
 
 ####### categorical counts
 ## bedrooms
