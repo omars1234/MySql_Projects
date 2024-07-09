@@ -45,6 +45,8 @@ select distinct bedrooms from raw_sales;
 select bedrooms,count(bedrooms)as bedrooms_count  from raw_sales group by bedrooms order by bedrooms_count desc; 
 # --- We have properties that have 0 to 5 bedrooms ,the max bedrooms count is 3  : 119333 counts , and the lowest is 0 bedrooms with 30 counts 
 
+----------------------------------------------------------------------------------------------------------
+
 ## propertyType
 select distinct propertyType from raw_sales;
 select propertyType,count(propertyType) as propertyType_count from raw_sales group by propertyType order by propertyType_count desc; 
